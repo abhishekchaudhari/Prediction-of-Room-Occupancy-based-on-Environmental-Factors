@@ -1,0 +1,44 @@
+@author: Avinash
+
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body style="background-color:rgb(255,0,0);">
+ <div class="login">
+	<h1>Predict Room Occupancy</h1>
+	
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="Temperature" placeholder="Temperature(19-25)" required="required" />
+        <input type="text" name="Hunidity" placeholder="Humidity(15-39)" required="required" />
+		<input type="text" name="Light" placeholder="Light(0-1600)" required="required" />
+		<input type="text" name="CO2" placeholder="CO2(400-2000)" required="required" />
+		<input type="text" name="HumidityRatio" placeholder="HumidityRatio(0.002-0.006)" required="required" />
+		<input type="text" name="period_of_day" placeholder="period_of_day(0 or 1)" required="required" />
+		
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+    
+    <h2><marquee behavior="scroll" direction="left">If output :1 the room is not vacant, if output :0 the room is vacant</marquee></h2>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
